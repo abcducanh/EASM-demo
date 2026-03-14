@@ -1,6 +1,6 @@
 # EASM Python Demo
 
-Demo EASM backend + frontend theo flow bài tập, viết bằng Python/FastAPI.
+
 
 ## Tính năng chính
 - Quản lý assets domain/ip
