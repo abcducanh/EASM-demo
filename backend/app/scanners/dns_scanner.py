@@ -43,7 +43,7 @@ class DNSScanner(Scanner):
         records.extend(self._query_doh(asset.name, add_record))
 
         if not records:
-            add_record('A', '127.0.0.1')
+            add_record('A', '0.0.0.0')
         return records
 
     def _query_doh(self, domain: str, add_record) -> list[dict]:
