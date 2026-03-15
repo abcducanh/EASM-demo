@@ -1,0 +1,45 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    name: Deploy to VM
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy to EC2 via SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd ~/EASM-demo
+            echo "🔄 Pulling latest code..."
+            git pull origin main
+            
+            echo "🐳 Rebuilding and restarting containers..."
+            docker-compose down
+            docker-compose up -d --build
+            
+            echo "✅ Checking running containers..."
+            docker-compose ps
+            
+            echo "🌐 Testing backend health..."
+            sleep 10
+            curl -f http://localhost:8080/health || exit 1
+            
+            echo "✅ Deployment successful!"
+
+      - name: Health check via public domain
+        run: |
+          echo "⏳ Waiting for service to be ready..."
+          sleep 20
+          curl -f https://easm.duckdns.org/api/health || exit 1
+          echo "✅ Application is live at https://easm.duckdns.org"
