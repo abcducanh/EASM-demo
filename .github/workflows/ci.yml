@@ -26,6 +26,7 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install bandit
+      - run: bandit -r app -ll --skip B10
       - run: bandit -r app -ll
 
   security-gitleaks:
