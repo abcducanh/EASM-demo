@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EASM Frontend</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>EASM Dashboard</h1>
+      <p>Quản lý assets, scan jobs, lịch quét, cảnh báo, so sánh kết quả và export report.</p>
+    </header>
+
+    <section class="card">
+      <h2>Tạo asset</h2>
+      <form id="asset-form" class="row">
+        <input id="asset-name" placeholder="example.com hoặc 127.0.0.1" required />
+        <select id="asset-type">
+          <option value="domain">domain</option>
+          <option value="ip">ip</option>
+        </select>
+        <input id="asset-tags" placeholder="tags, cách nhau bằng dấu phẩy" />
+        <button type="submit">Thêm asset</button>
+      </form>
+      <div id="message"></div>
+    </section>
+
+    <section class="card">
+      <h2>Dashboard</h2>
+      <div class="row toolbar">
+        <button id="refresh-btn" class="secondary">Làm mới</button>
+        <button id="delete-all-btn" class="danger">Xóa tất cả assets</button>
+      </div>
+      <div class="stats" id="stats"></div>
+      <div class="dashboard-grid">
+        <div class="panel">
+          <h3>Trạng thái scan jobs</h3>
+          <div id="job-status-stats" class="stats"></div>
+        </div>
+        <div class="panel">
+          <h3>Phân bố scan types</h3>
+          <div id="scan-type-stats" class="list-stats"></div>
+        </div>
+      </div>
+      <div class="dashboard-grid">
+        <div class="panel">
+          <h3>Asset Groups / Tags</h3>
+          <div id="tag-stats" class="list-stats"></div>
+        </div>
+        <div class="panel">
+          <h3>Alerts / Notifications</h3>
+          <div id="alerts-list" class="list-stats"></div>
+        </div>
+      </div>
+      <div class="panel">
+        <h3>Scan jobs gần nhất</h3>
+        <div id="recent-jobs"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Danh sách assets</h2>
+      <div id="assets"></div>
+    </section>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
