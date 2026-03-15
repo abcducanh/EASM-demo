@@ -1,5 +1,6 @@
 # EASM Python Demo
 
+<<<<<<< HEAD
 Demo EASM backend + frontend theo flow bài tập, viết bằng Python/FastAPI.
 
 ## Checklist hoàn thiện
@@ -15,6 +16,9 @@ Demo EASM backend + frontend theo flow bài tập, viết bằng Python/FastAPI.
 - Có comments giải thích các đoạn logic phức tạp như scan nền, discovery, schedule worker
 - Có `README.md` hướng dẫn cài đặt/chạy/test/deploy
 - Có `api.yml` mô tả các endpoint đã mở rộng
+=======
+
+>>>>>>> bacf5d84e542b53d689955c29b196e5ad24a5988
 
 ## Tính năng chính
 - Quản lý assets domain/ip
@@ -25,6 +29,7 @@ Demo EASM backend + frontend theo flow bài tập, viết bằng Python/FastAPI.
 - Scheduled scans theo chu kỳ phút
 - Scan comparison giữa 2 lần scan gần nhất
 - Export asset results ra CSV / PDF
+<<<<<<< HEAD
 - Docker Compose cho full stack
 - GitHub Actions CI/CD + security scans
 
@@ -39,6 +44,8 @@ backend/app/
 frontend/     # Static HTML/CSS/JS UI
 .github/      # GitHub Actions workflow
 ```
+=======
+>>>>>>> bacf5d84e542b53d689955c29b196e5ad24a5988
 
 ## Chạy local
 ```powershell
@@ -50,6 +57,7 @@ python -m venv .venv
 
 Mở: http://localhost:8080
 
+<<<<<<< HEAD
 ## Test bằng curl
 ```bash
 # Create assets
@@ -69,6 +77,8 @@ curl -s "http://localhost:8080/scan-jobs/$DNS_JOB" | jq
 curl -s "http://localhost:8080/scan-jobs/$DNS_JOB/results" | jq
 ```
 
+=======
+>>>>>>> bacf5d84e542b53d689955c29b196e5ad24a5988
 ## Tests
 ```powershell
 .venv\Scripts\python.exe -m pytest -q
@@ -76,6 +86,7 @@ curl -s "http://localhost:8080/scan-jobs/$DNS_JOB/results" | jq
 .venv\Scripts\python.exe -m pytest --cov=app --cov-report=html
 ```
 
+<<<<<<< HEAD
 ## API documentation
 - `api.yml`: OpenAPI YAML snapshot cho toàn bộ endpoint hiện tại
 - Ngoài ra khi chạy app, FastAPI còn có:
@@ -99,3 +110,50 @@ docker compose down
 - **Alerts/Notifications**: `GET /alerts`
 - **Scan Comparison**: `GET /assets/{id}/compare?scan_type=dns`
 - **Export Reports**: `GET /assets/{id}/export.csv`, `GET /assets/{id}/export.pdf`
+=======
+## Bonus features (Bài 6)
+- **6.1 Scheduled Scans**: `POST /assets/{id}/schedules`, `GET /assets/{id}/schedules`
+- **6.2 Asset Groups/Tags**: tạo asset với `tags`, `PATCH /assets/{id}/tags`, `GET /asset-groups`
+- **6.3 Alerts/Notifications**: `GET /alerts`
+- **6.4 Scan Comparison**: `GET /assets/{id}/compare?scan_type=dns`
+- **6.5 Export Reports**: `GET /assets/{id}/export.csv`, `GET /assets/{id}/export.pdf`
+
+
+## Bài 5 - Deploy với Docker Compose
+
+### File đã thêm
+- `docker-compose.yml`
+- `backend/Dockerfile`
+- `frontend/Dockerfile`
+- `frontend/nginx.conf`
+- `.dockerignore`
+
+### Chạy bằng Docker Compose
+```bash
+docker compose up --build -d
+```
+
+### Kiểm tra services
+```bash
+docker compose ps
+```
+
+### Kiểm tra backend health
+```bash
+curl http://localhost:8080/health
+```
+
+### Truy cập ứng dụng
+- Frontend: `http://localhost:3000`
+- Backend API: `http://localhost:8080`
+
+### Dừng stack
+```bash
+docker compose down
+```
+
+### Screenshot cần chụp
+- `docker compose ps` hiển thị cả `easm-frontend` và `easm-backend` đang chạy
+- Frontend mở được tại `http://localhost:3000`
+- Backend health check trả về `{"status":"ok"}` tại `http://localhost:8080/health`
+>>>>>>> bacf5d84e542b53d689955c29b196e5ad24a5988
