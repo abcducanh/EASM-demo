@@ -1,6 +1,7 @@
 # EASM Python Demo
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 Demo EASM backend + frontend theo flow bài tập, viết bằng Python/FastAPI.
 
 ## Checklist hoàn thiện
@@ -19,6 +20,9 @@ Demo EASM backend + frontend theo flow bài tập, viết bằng Python/FastAPI.
 =======
 
 >>>>>>> bacf5d84e542b53d689955c29b196e5ad24a5988
+=======
+
+>>>>>>> bacf5d84e542b53d689955c29b196e5ad24a5988
 
 ## Tính năng chính
 - Quản lý assets domain/ip
@@ -29,6 +33,7 @@ Demo EASM backend + frontend theo flow bài tập, viết bằng Python/FastAPI.
 - Scheduled scans theo chu kỳ phút
 - Scan comparison giữa 2 lần scan gần nhất
 - Export asset results ra CSV / PDF
+<<<<<<< HEAD
 <<<<<<< HEAD
 - Docker Compose cho full stack
 - GitHub Actions CI/CD + security scans
@@ -46,6 +51,8 @@ frontend/     # Static HTML/CSS/JS UI
 ```
 =======
 >>>>>>> bacf5d84e542b53d689955c29b196e5ad24a5988
+=======
+>>>>>>> bacf5d84e542b53d689955c29b196e5ad24a5988
 
 ## Chạy local
 ```powershell
@@ -57,6 +64,7 @@ python -m venv .venv
 
 Mở: http://localhost:8080
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 ## Test bằng curl
 ```bash
@@ -79,6 +87,8 @@ curl -s "http://localhost:8080/scan-jobs/$DNS_JOB/results" | jq
 
 =======
 >>>>>>> bacf5d84e542b53d689955c29b196e5ad24a5988
+=======
+>>>>>>> bacf5d84e542b53d689955c29b196e5ad24a5988
 ## Tests
 ```powershell
 .venv\Scripts\python.exe -m pytest -q
@@ -86,6 +96,7 @@ curl -s "http://localhost:8080/scan-jobs/$DNS_JOB/results" | jq
 .venv\Scripts\python.exe -m pytest --cov=app --cov-report=html
 ```
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 ## API documentation
 - `api.yml`: OpenAPI YAML snapshot cho toàn bộ endpoint hiện tại
@@ -111,6 +122,8 @@ docker compose down
 - **Scan Comparison**: `GET /assets/{id}/compare?scan_type=dns`
 - **Export Reports**: `GET /assets/{id}/export.csv`, `GET /assets/{id}/export.pdf`
 =======
+=======
+>>>>>>> bacf5d84e542b53d689955c29b196e5ad24a5988
 ## Bonus features (Bài 6)
 - **6.1 Scheduled Scans**: `POST /assets/{id}/schedules`, `GET /assets/{id}/schedules`
 - **6.2 Asset Groups/Tags**: tạo asset với `tags`, `PATCH /assets/{id}/tags`, `GET /asset-groups`
@@ -156,4 +169,7 @@ docker compose down
 - `docker compose ps` hiển thị cả `easm-frontend` và `easm-backend` đang chạy
 - Frontend mở được tại `http://localhost:3000`
 - Backend health check trả về `{"status":"ok"}` tại `http://localhost:8080/health`
+<<<<<<< HEAD
+>>>>>>> bacf5d84e542b53d689955c29b196e5ad24a5988
+=======
 >>>>>>> bacf5d84e542b53d689955c29b196e5ad24a5988
