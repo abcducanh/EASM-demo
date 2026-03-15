@@ -1,4 +1,4 @@
-const API_URL = 'http://52.62.241.203:8080';
+const API_URL = '/api';
 const SCAN_OPTIONS = {
   domain: [['whois', 'WHOIS'], ['dns', 'DNS'], ['subdomain', 'Subdomain'], ['cert_trans', 'Cert Transparency'], ['ssl', 'SSL/TLS'], ['tech', 'Technology'], ['all', 'Quét tất cả']],
   ip: [['ip', 'IP Info'], ['asn', 'ASN Lookup'], ['port', 'Port Scan'], ['all', 'Quét tất cả']],
