@@ -1,0 +1,606 @@
+openapi: 3.1.0
+info:
+  title: EASM Python Demo
+  description: OpenAPI snapshot for the EASM demo project.
+  version: 1.3.0
+paths:
+  /health:
+    get:
+      summary: Health
+      operationId: health_health_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+  /assets:
+    post:
+      summary: Create Asset
+      operationId: create_asset_assets_post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetCreate'
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    get:
+      summary: List Assets
+      operationId: list_assets_assets_get
+      parameters:
+      - name: tag
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Tag
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    delete:
+      summary: Delete All Assets
+      operationId: delete_all_assets_assets_delete
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+  /assets/{asset_id}/tags:
+    patch:
+      summary: Update Asset Tags
+      operationId: update_asset_tags_assets__asset_id__tags_patch
+      parameters:
+      - name: asset_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Asset Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetUpdateTags'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /assets/{asset_id}:
+    delete:
+      summary: Delete Asset
+      operationId: delete_asset_assets__asset_id__delete
+      parameters:
+      - name: asset_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Asset Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /assets/{asset_id}/scan:
+    post:
+      summary: Start Scan
+      operationId: start_scan_assets__asset_id__scan_post
+      parameters:
+      - name: asset_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Asset Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScanRequest'
+      responses:
+        '202':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /scan-jobs/{job_id}:
+    get:
+      summary: Get Job
+      operationId: get_job_scan_jobs__job_id__get
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Job Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /scan-jobs/{job_id}/results:
+    get:
+      summary: Get Results
+      operationId: get_results_scan_jobs__job_id__results_get
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Job Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /assets/{asset_id}/scans:
+    get:
+      summary: List Scans
+      operationId: list_scans_assets__asset_id__scans_get
+      parameters:
+      - name: asset_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Asset Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /assets/{asset_id}/results:
+    get:
+      summary: Asset Results
+      operationId: asset_results_assets__asset_id__results_get
+      parameters:
+      - name: asset_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Asset Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /assets/{asset_id}/dns:
+    get:
+      summary: Asset Dns
+      operationId: asset_dns_assets__asset_id__dns_get
+      parameters:
+      - name: asset_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Asset Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /assets/{asset_id}/whois:
+    get:
+      summary: Asset Whois
+      operationId: asset_whois_assets__asset_id__whois_get
+      parameters:
+      - name: asset_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Asset Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /assets/{asset_id}/subdomains:
+    get:
+      summary: Asset Subdomains
+      operationId: asset_subdomains_assets__asset_id__subdomains_get
+      parameters:
+      - name: asset_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Asset Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /assets/{asset_id}/schedules:
+    post:
+      summary: Create Schedule
+      operationId: create_schedule_assets__asset_id__schedules_post
+      parameters:
+      - name: asset_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Asset Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScheduledScanCreate'
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    get:
+      summary: List Schedules
+      operationId: list_schedules_assets__asset_id__schedules_get
+      parameters:
+      - name: asset_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Asset Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /schedules/{schedule_id}:
+    delete:
+      summary: Delete Schedule
+      operationId: delete_schedule_schedules__schedule_id__delete
+      parameters:
+      - name: schedule_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Schedule Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /alerts:
+    get:
+      summary: List Alerts
+      operationId: list_alerts_alerts_get
+      parameters:
+      - name: asset_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Asset Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /dashboard:
+    get:
+      summary: Dashboard
+      operationId: dashboard_dashboard_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+  /asset-groups:
+    get:
+      summary: Asset Groups
+      operationId: asset_groups_asset_groups_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+  /assets/{asset_id}/compare:
+    get:
+      summary: Compare Scans
+      operationId: compare_scans_assets__asset_id__compare_get
+      parameters:
+      - name: asset_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Asset Id
+      - name: scan_type
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/ScanType'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /assets/{asset_id}/export.csv:
+    get:
+      summary: Export Csv
+      operationId: export_csv_assets__asset_id__export_csv_get
+      parameters:
+      - name: asset_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Asset Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /assets/{asset_id}/export.pdf:
+    get:
+      summary: Export Pdf
+      operationId: export_pdf_assets__asset_id__export_pdf_get
+      parameters:
+      - name: asset_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Asset Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    AssetCreate:
+      properties:
+        name:
+          type: string
+          title: Name
+        type:
+          $ref: '#/components/schemas/AssetType'
+        tags:
+          items:
+            type: string
+          type: array
+          title: Tags
+      type: object
+      required:
+      - name
+      - type
+      title: AssetCreate
+    AssetType:
+      type: string
+      enum:
+      - domain
+      - ip
+      title: AssetType
+    AssetUpdateTags:
+      properties:
+        tags:
+          items:
+            type: string
+          type: array
+          title: Tags
+      type: object
+      title: AssetUpdateTags
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ScanRequest:
+      properties:
+        scan_type:
+          $ref: '#/components/schemas/ScanType'
+      type: object
+      required:
+      - scan_type
+      title: ScanRequest
+    ScanType:
+      type: string
+      enum:
+      - dns
+      - whois
+      - subdomain
+      - cert_trans
+      - asn
+      - all
+      - ip
+      - port
+      - ssl
+      - tech
+      title: ScanType
+    ScheduledScanCreate:
+      properties:
+        scan_type:
+          $ref: '#/components/schemas/ScanType'
+        interval_minutes:
+          type: integer
+          maximum: 1440.0
+          minimum: 1.0
+          title: Interval Minutes
+      type: object
+      required:
+      - scan_type
+      - interval_minutes
+      title: ScheduledScanCreate
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
